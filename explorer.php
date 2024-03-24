@@ -1,12 +1,19 @@
 <?php
 
+require 'database/formDB.php';
+
 session_start();
 if (!isset($_SESSION['user'])) {
   header('Location: index.php');
 }
 
-require 'database/formDB.php'; 
-$allTweets = getTweets($database);
+if (isset($_GET['searchResults'])) {
+  $search = $_GET['searchResults'];
+  $allTweets = search($database, $search);
+} else {
+  $allTweets = getTweets($database);
+}
+
 $userInfo = getCurrentUser($database, $_SESSION['user']);
 
 
@@ -117,7 +124,7 @@ $userInfo = getCurrentUser($database, $_SESSION['user']);
 
     <main class="content">
       <div class="searchContainer">
-        <form class="searchBox" action="database/formDB.php" method="post">
+        <form class="searchBox" action="database/formDB.php" method="get">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input type="text" placeholder="Chercher..." class="searchBox__input" name="searchBox__input" autocomplete="off">
           <input type="submit" value="submit" class="submitHidden">

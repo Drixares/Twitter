@@ -108,18 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "deleteTweet") {
   $requeteTweet->execute($data);
 } 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "search") {
-
-  if ($_POST['searchBox__input'] == '') {
+if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['form'] == "search") {
+  
+  if ($_GET['searchBox__input'] == '') {
     $searchTweets = getTweets($database);
+    header('Location: ../explorer.php');
   } else {
-    $data = [
-      'search' => "%" . $_POST['searchBox__input'] . "%",
-    ];
-
-    $requeteTweet = $database->prepare("SELECT * FROM tweets WHERE content LIKE :search");
-    $requeteTweet->execute($data);
-    $searchTweets = $requeteTweet->fetchAll(PDO::FETCH_ASSOC);
+    header('Location: ../explorer.php?searchResults=' . $_GET['searchBox__input']);
   }
 }
 
@@ -148,6 +143,16 @@ function getCurrentUser($database, $id) {
   $requeteUser = $database->prepare("SELECT * FROM users WHERE id = :id");
   $requeteUser->execute($data);
   return $requeteUser->fetch(PDO::FETCH_ASSOC);
+}
+
+function search($database, $search) {
+  $data = [
+    'search' => "%".$search."%",
+  ];
+
+  $requeteSearch = $database->prepare("SELECT * FROM tweets WHERE content LIKE :search");
+  $requeteSearch->execute($data);
+  return $requeteSearch->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
