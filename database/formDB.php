@@ -12,7 +12,7 @@ try {
   die('Erreur : ' . $e->getMessage());
 }
 
-if ($_SERVER['REQUEST_METHOD'] = "POST" && $_POST['form'] == "login") {
+if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "login") {
   if ($_POST['formEmail'] != '' && $_POST['formPassword'] != '') {
 
     $data = [
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "logout") {
   exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] = "POST" && $_POST['form'] == "deleteUser") {
+if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "deleteUser") {
   $data = [
     'id' => $_SESSION['user']['id'],
   ];
@@ -80,5 +80,74 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == 'signup') {
   }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "createTweet") {
+  if ($_POST['tweetContent'] != '') {
+
+    try {
+      $data = [
+        'tweet_id' => uniqid(),
+        'user_id' => $_SESSION['user'],
+        'content' => $_POST['tweetContent'],
+      ];
+
+      $requeteTweet = $database->prepare("INSERT INTO tweets (tweet_id, user_id, content) VALUES (:tweet_id, :user_id, :content)");
+      $requeteTweet->execute($data);
+      header('Location: ../home.php');
+    } catch (Exception $e) {
+      die('Erreur : ' . $e->getMessage());
+    }
+  }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "deleteTweet") {
+  $data = [
+    'id' => $_POST['tweetId'],
+  ];
+
+  $requeteTweet = $database->prepare("DELETE FROM tweets WHERE tweet_id = :id");
+  $requeteTweet->execute($data);
+} 
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "search") {
+
+  if ($_POST['searchBox__input'] == '') {
+    $searchTweets = getTweets($database);
+  } else {
+    $data = [
+      'search' => "%" . $_POST['searchBox__input'] . "%",
+    ];
+
+    $requeteTweet = $database->prepare("SELECT * FROM tweets WHERE content LIKE :search");
+    $requeteTweet->execute($data);
+    $searchTweets = $requeteTweet->fetchAll(PDO::FETCH_ASSOC);
+  }
+}
+
+
+function getTweets($database) {
+  $requeteTweets = $database->prepare("SELECT * FROM tweets ORDER BY date DESC");
+  $requeteTweets->execute();
+  return $requeteTweets->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getUser($database, $id) {
+  $data = [
+    'id' => $id,
+  ];
+
+  $requeteUser = $database->prepare("SELECT * FROM users WHERE id = :id");
+  $requeteUser->execute($data);
+  return $requeteUser->fetch(PDO::FETCH_ASSOC);
+}
+
+function getCurrentUser($database, $id) {
+  $data = [
+    'id' => $id,
+  ];
+
+  $requeteUser = $database->prepare("SELECT * FROM users WHERE id = :id");
+  $requeteUser->execute($data);
+  return $requeteUser->fetch(PDO::FETCH_ASSOC);
+}
 
 ?>

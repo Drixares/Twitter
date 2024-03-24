@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Outfit:wght@100..900&display=swap');
+:root {
+  --bg: #000000;
+  --bg1: #ffffff;
+  --border-color: #333639;
+  --menuhover-color: #1e1f21;
+  --text: rgb(231, 233, 234);
+  --text1: #000000;
+  --text2: #71767B;
+  --primary: rgb(29, 155, 240);
+  
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+.container {
+  overflow-x: hidden;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+}
+
+.navigationContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  width: 30%;
+}
+
+.navigationBox__logoBox > img {
+  height: 28px;
+  transform: translateX(20px);
+  margin-bottom: 20px;
+}
+
+.sideNav {
+  margin-right: 30px;
+}
+
+.sideNav > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+} 
+
+.menuLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding-inline: 20px;
+  height: 50px;
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: 1.3rem;
+}
+
+.menuIcon {
+  fill: var(--text);
+  height: 28px;
+}
+
+.menuLink.active {
+  font-weight: 600;
+}
+
+.menuLink:hover {
+  background-color: var(--menuhover-color);
+  transition: background-color 0.2s;
+}
+
+.postBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 15px;
+  background-color: var(--primary);
+  color: var(--text);
+  border-radius: 999px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.postBtn:hover {
+  background-color: rgba(29, 155, 240, 0.8);
+  transition: background-color 0.2s;
+}
+
+.navigationBox__profilBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  margin-top: 100px;
+  margin-bottom: 20px;
+  height: 60px;
+  padding-inline: 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.navigationBox__profilBox:hover {
+  background-color: var(--menuhover-color);
+  transition: background-color 0.2s;
+}
+
+.navigationBox__profilBox__nameBox > p.tag {
+  color: var(--text2);
+}
+
+.navigationBox__profilBox__nameBox > h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.navigationBox__profilBox__imgBox,
+.createTweetBox__imgBox,
+.tweet__imgBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 60%;
+  overflow: hidden;
+}
+
+.navigationBox__profilBox__imgBox {
+  margin-right: 10px;
+}
+
+.navigationBox__profilBox__imgBox > img,
+.createTweetBox__imgBox > img,
+.tweet__imgBox > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navigationBox__profilBox__boxIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 60px;
+}
+
+.navigationBox__profilBox__boxIcon > svg {
+  fill: var(--text);
+  height: 20px;
+}
+
+/* -------------------------------------------------------------------- */
+
+main.content {
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  width: 600px;
+  margin-left: 20px;
+}
+
+.choiceFeedBox {
+  display: flex;
+  align-items: center;
+  color: var(--text2);
+  height: 60px;
+}
+
+.forYou {
+  width: 260px;
+}
+
+.abonnements {
+  width: 290px;
+}
+
+.feedSettings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+}
+
+.feedSettings__boxIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 60%;
+  cursor: pointer;
+}
+
+.feedSettings__boxIcon:hover {
+  background-color: var(--menuhover-color);
+  transition: background-color 0.2s;
+}
+
+.forYou, 
+.abonnements {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  height: 100%;
+}
+
+.forYou:hover,
+.abonnements:hover {
+  background-color: var(--menuhover-color);
+  transition: background-color 0.2s;
+}
+
+.feedSettings svg {
+  fill: var(--text);
+  height: 20px;
+
+}
+
+.createTweetBox {
+  display: flex;
+  align-items: flex-start;
+  border-block: 1px solid var(--border-color);
+  padding: 10px 15px;
+  min-height: 100px;
+  height: auto;
+}
+
+
+.createTweetBox__left,
+.tweet__left {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50px;
+  height: 100%;
+}
+
+.createTweetBox__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.createTweetBox__inputBox {
+  height: auto;
+}
+
+#createTweetBox__inputBox__tweetInput {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  color: var(--text);
+  padding: 0 8px 8px 8px;
+  max-width: 450px;
+  min-height: 50px;
+  overflow-y: hidden;
+}
+
+#createTweetBox__inputBox__tweetInput.placeholder {
+  color: var(--text2);
+  font-size: 1.3rem;
+} */
+
+#createTweetBox__inputBox__tweetInput:focus {
+  outline: none;
+}
+
+.createTweetBox__more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.createTweetBox__boxIcons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.createTweetBox__boxIcons > div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 60%;
+}
+
+.createTweetBox__boxIcons > div:hover {
+  background-color: rgba(29, 155, 240, .2);
+  transition: background-color 0.2s;
+}
+
+.iconsTweet {
+  fill: var(--primary);
+  height: 20px;
+}
+
+.createTweetBox__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: var(--primary);
+  color: var(--text);
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+}
+
+.createTweetBox__btn:hover {
+  background-color: rgba(29, 155, 240, 0.8);
+  transition: background-color 0.2s;
+}
+
+/* --------------------------------------------- */
+ 
+.tweetsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.tweet {
+  display: flex;
+  padding:  15px;
+  width: 100%;
+  color: var(--text);
+  fill: var(--text2);
+  border-bottom: 1px solid var(--border-color);
+}
+
+
+.tweet__infos {
+  display: flex;
+}
+
+header.tweet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.tweet__header__infos {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 7px;
+}
+
+.tweet__header__infos__tag,
+.tweet__header__infos__date {
+  color: var(--text2);
+}
+
+.tweet__header__infos__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tweet__header__more {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 60%;
+}
+
+.tweet__header__more:hover {
+  background-color: rgba(29, 155, 240, .2);
+  fill: var(--primary);
+  transition: background-color 0.2s, fill 0.2s;
+}
+
+.tweet__header__more .pointsIcon {
+  height: 20px;
+}
+
+.tweet__right {
+  width: 100%;
+}
+
+.tweet__content {
+  margin-top: 10px;
+  margin-left: 8px;
+  /* font-size: 1.3rem; */
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  border-bottom:  1px solid var(--border-color);
+}
+
+.searchContainer > .searchBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--border-color);
+  color: var(--text2);
+  padding: 10px;
+  border-radius: 999px;
+}
+
+.searchBox > .searchBox__input {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  padding: 0 8px;
+  color: var(--text2);
+}
+
+.searchContainer:has(.searchBox__input:focus) > .searchBox {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.submitHidden {
+  display: none;
+}
