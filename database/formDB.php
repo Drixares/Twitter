@@ -82,20 +82,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == 'signup') {
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "createTweet") {
   if ($_POST['tweetContent'] != '') {
+    $data = [
+      'tweet_id' => uniqid(),
+      'user_id' => $_SESSION['user'],
+      'content' => $_POST['tweetContent'],
+    ];
 
-    try {
-      $data = [
-        'tweet_id' => uniqid(),
-        'user_id' => $_SESSION['user'],
-        'content' => $_POST['tweetContent'],
-      ];
-
-      $requeteTweet = $database->prepare("INSERT INTO tweets (tweet_id, user_id, content) VALUES (:tweet_id, :user_id, :content)");
-      $requeteTweet->execute($data);
-      header('Location: ../home.php');
-    } catch (Exception $e) {
-      die('Erreur : ' . $e->getMessage());
-    }
+    $requeteTweet = $database->prepare("INSERT INTO tweets (tweet_id, user_id, content) VALUES (:tweet_id, :user_id, :content)");
+    $requeteTweet->execute($data);
+    header('Location: ../home.php');
   }
 }
 
@@ -106,6 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['form'] == "deleteTweet") {
 
   $requeteTweet = $database->prepare("DELETE FROM tweets WHERE tweet_id = :id");
   $requeteTweet->execute($data);
+  header('Location: ../home.php');
 } 
 
 if ($_SERVER['REQUEST_METHOD'] == "GET" && $_GET['form'] == "search") {
