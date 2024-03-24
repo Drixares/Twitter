@@ -29,6 +29,12 @@ html,
   align-items: center;
   height: 100vh;
   background-color: var(--bg);
+  /* position: relative; */
+}
+
+.container.inactive {
+  background-color: var(--border-color);
+  pointer-events: none;
 }
 
 .rightBox, 
@@ -157,7 +163,6 @@ html,
 }
 
 .loginBtn {
-  /* background-color: var(--primary); */
   color: var(--primary);
   display: inline-flex;
   justify-content: center;
@@ -177,3 +182,127 @@ html,
   transition: background-color 0.2s;
 }
 
+.formBox {
+  display: none;
+}
+
+.formBox.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 700px;
+  background-color: var(--bg);
+  z-index: 10;
+  border-radius: 20px;
+  padding-block: 20px;
+}
+
+.closeForm {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.closeForm:hover {
+  background-color: var(--border-color);
+  transition: background-color 0.2s;
+}
+
+.logoForm > img {
+  height: 28px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 450px;
+  height: 100%;
+  margin-top: 24px;
+}
+
+.formContent h2 {
+  color: var(--text);
+  font-size: 2rem;
+}
+
+.formInputBox {
+  position: relative;
+  width: 100%;
+ }
+ 
+.input {
+  border: solid 1.5px var(--border-color);
+  border-radius: 5px;
+  background: none;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #f5f5f5;
+  transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  width: 100%;
+}
+
+.formLabel {
+  position: absolute;
+  left: 15px;
+  color: #e8e8e8;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: 150ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.input:focus, input:valid {
+  outline: none;
+  border: 1.5px solid var(--primary);
+}
+
+.input:focus ~ label, input:valid ~ label {
+  transform: translateY(-50%) scale(0.8);
+  background-color: var(--bg);
+  padding: 0 .2em;
+  color: #2196f3;
+}
+
+
+.formBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 450px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  cursor: pointer;
+}
+
+.formBtn:hover {
+  background-color: rgb(255, 255, 255, 0.8);
+  transition: background-color 0.2s;
+}

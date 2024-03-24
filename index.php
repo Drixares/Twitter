@@ -13,6 +13,7 @@ if (isset($_SESSION['user'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="CSS/style.css">
+  <script src="https://kit.fontawesome.com/d3a9f97c9c.js" crossorigin="anonymous"></script>
   <title>Document</title>
 </head>
 <body>
@@ -51,5 +52,63 @@ if (isset($_SESSION['user'])) {
       </div>
     </div>
   </div>
+
+  <div class="formBox" id="signupForm">
+    <div class="formTop">
+      <div class="closeForm">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="logoForm">
+        <img src="ressources/logo.svg" alt="logo">
+      </div>
+    </div>
+    <form action="database/formDB.php" method="post">
+      <input type="hidden" name="form" value="signup">
+      <div class="formContent">
+        <h2>Créer votre compte</h2>
+        <div class="formInputBox">
+          <input type="text" name="formName" id="formName" class="input" required autocomplete="off">
+          <label for="formName" class="formLabel">Nom</label>
+        </div>
+        <div class="formInputBox">
+          <input type="email" name="formEmail" id="formEmail" class="input" required autocomplete="off">
+          <label for="formEmail" class="formLabel">Email</label>
+        </div>
+        <div class="formInputBox">
+          <input type="password" name="formPassword" id="formPassword" class="input" required autocomplete="off">
+          <label for="formPassword" class="formLabel">Mot de passe</label>
+        </div>
+      </div>
+      <button type="submit" class="formBtn">S'inscrire</button>
+    </form>
+  </div>
+
+  <div class="formBox" id="loginForm">
+    <div class="formTop">
+      <div class="closeForm">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="logoForm">
+        <img src="ressources/logo.svg" alt="logo">
+      </div>
+    </div>
+    <form action="database/formDB.php" method="post">
+      <input type="hidden" name="form" value="login">
+      <div class="formContent">
+        <h2>Se connecter</h2>
+        <div class="formInputBox">
+          <input type="email" name="formEmail" id="formEmail" class="input" required autocomplete="off">
+          <label for="formEmail" class="formLabel">Email</label>
+        </div>
+        <div class="formInputBox">
+          <input type="password" name="formPassword" id="formPassword" class="input" required autocomplete="off">
+          <label for="formPassword" class="formLabel">Mot de passe</label>
+        </div>
+      </div>
+      <button type="submit" class="formBtn">Se connecter</button>
+    </form>
+  </div>
+
+  <script src="js/formulaire.js"></script>
 </body>
 </html>
