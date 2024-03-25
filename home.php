@@ -178,8 +178,16 @@ $userInfo = getCurrentUser($database, $_SESSION['user']);
                 <p class="tweet__header__infos__tag">@<?= $user['tag'] ?></p>
                 <p class="tweet__header__infos__date"><?= $tweet['date'] ?></p>
               </div>
-              <div class="tweet__header__more">
+              <div class="tweet__header__more" data-id="<?= $tweet['tweet_id'] ?>">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="pointsIcon"><g><path d="M3 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm9 2c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"></path></g></svg>
+              </div>
+              <div class="tweet__header__more__options" data-id="<?= $tweet['tweet_id'] ?>">
+                <form class="option" method="post" action="database/formDB.php">
+                  <input type="hidden" name="form" value="deleteTweet">
+                  <input type="hidden" name="tweetId" value="<?= $tweet['tweet_id'] ?>">
+                  <button type="submit" value="submit" class="btnDelete"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                  
+                </form>
               </div>
             </header>
             <div class="tweet__content">
